@@ -1,11 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hapus Transaksi</h1>
-</body>
-</html>
+<?php
+include("../koneksi.php");
+
+if(isset($_GET['kode_transaksi'])){
+    $kode_trx = $_GET['kode_transaksi'];
+
+    $sql = "DELETE FROM transaksi WHERE kode_transaksi=$kode_trx";
+    $query = mysqli_query($db, $sql);
+
+    if($query){
+        header('Location: data-transaksi.php');
+    } else{
+        die("gagal menghapus...");
+    }
+} else{
+    die("akses dilarang..");
+}
+
+?>
